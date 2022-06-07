@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/Sirupsen/logrus"
 	"github.com/joho/godotenv"
+	"github.com/sirupsen/logrus"
 	"github.com/urfave/cli"
 )
 
@@ -29,12 +29,12 @@ func main() {
 		cli.StringFlag{
 			Name:   "token",
 			Usage:  "google chat token",
-			EnvVar: "GOOGLE_CHAT_TOKEN, PLUGIN_TOKEN",
+			EnvVar: "GOOGLE_CHAT_TOKEN,PLUGIN_TOKEN",
 		},
 		cli.StringFlag{
 			Name:   "key",
 			Usage:  "google chat key",
-			EnvVar: "GOOGLE_CHAT_KEY, PLUGIN_KEY",
+			EnvVar: "GOOGLE_CHAT_KEY,PLUGIN_KEY",
 		},
 		cli.StringFlag{
 			Name:   "conversation.key",

@@ -3,6 +3,7 @@ package google_chat
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"net/http"
 )
 
@@ -25,7 +26,9 @@ func NewClient(url string, key string, token string, conversationKey string) Cli
 	} else {
 		fullURL = url + "/messages?key=" + key + "&token=" + token + "&threadKey=" + conversationKey
 	}
-	return &client{fullURL}
+	return &client{
+		url: fullURL,
+	}
 }
 
 func (c *client) SendMessage(msg *Message) error {
@@ -37,10 +40,8 @@ func (c *client) SendMessage(msg *Message) error {
 	if err != nil {
 		return err
 	}
-	//TODO: fix error and give better feedback
 	if resp.StatusCode != 200 {
-		//	//t, _ := ioutil.ReadAll(resp.Body)
-		//	//return &Error{resp.StatusCode, string(t)}
+		return fmt.Errorf("unable to post message %d", resp.StatusCode)
 	}
 
 	return nil
